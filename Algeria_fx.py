@@ -53,7 +53,7 @@ df = pd.DataFrame(rows)
 file_path = "Algeria_fx.csv"
 if os.path.exists(file_path):
     existing_df = pd.read_csv(file_path)
-    df = pd.concat([existing_df, df]).drop_duplicates(subset=["Date", "Currency"], keep="last")
+    df = pd.concat([existing_df, df]).drop_duplicates(subset=["Scrape time", "Currency"], keep="last")
 
 df.to_csv(file_path, index=False, encoding="utf-8")
 
