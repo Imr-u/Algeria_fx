@@ -28,6 +28,7 @@ response = requests.get(URL, headers=Headers, verify=False)
 soup = BeautifulSoup(response.content , "html.parser")
 div = soup.find("div", class_= "elementor-element elementor-element-730fc1b elementor-widget elementor-widget-shortcode" )
 table = div.find("table")
+scrape_time = datetime.date.today()
 
 latest_date = table.find("thead").find_all("th")[1].get_text(strip=True)  # skip first blank
 
@@ -41,7 +42,8 @@ for tr in table.find("tbody").find_all("tr"):
     rows.append({
         "Date": latest_date,
         "Currency": currency,
-        "Rate": float(rate)
+        "Rate": float(rate),
+        "Scrape time": scrape_time
     })
 
 # Create DataFrame
